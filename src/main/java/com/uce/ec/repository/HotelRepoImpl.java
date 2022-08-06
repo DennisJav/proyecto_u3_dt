@@ -24,6 +24,13 @@ public class HotelRepoImpl implements IHotelRepo {
 		TypedQuery<Hotel> myQuery = this.entityManager.createQuery(
 				"SELECT h FROM Hotel h JOIN h.habitaciones ha WHERE ha.tipo = :valorUno", Hotel.class);
 		myQuery.setParameter("valorUno", tipoHabitacion);
+		
+		//TRAER BAJO DEMANDA LAS HABITACIONES PARA QUE FUNCIONE EL LAZY SOLO SE HACE EN LA CAPA REPOSITORIO
+		List<Hotel> hoteles = myQuery.getResultList();
+		for(Hotel h: hoteles) {
+			h.getHabitaciones().size();
+		}
+		
 		return myQuery.getResultList();
 	}
 
@@ -49,13 +56,19 @@ public class HotelRepoImpl implements IHotelRepo {
 	@Override
 	public List<Hotel> buscarHotelOuterJoinwhere(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Hotel> myQuery = this.entityManager.createQuery(
+				"SELECT h FROM Hotel h, Habitacion ha WHERE h = ha.hotel AND ha.tipo =:valorUno", Hotel.class);
+		myQuery.setParameter("valorUno", tipoHabitacion);
+		return myQuery.getResultList();
 	}
 
 	@Override
 	public List<Hotel> buscarHotelOuterJoinFetch(String tipoHabitacion) {
 		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Hotel> myQuery = this.entityManager.createQuery(
+				"SELECT h FROM Hotel h JOIN FETCH h.habitaciones ha WHERE ha.tipo = :valorUno", Hotel.class);
+		myQuery.setParameter("valorUno", tipoHabitacion);
+		return myQuery.getResultList();
 	}
 
 	@Override

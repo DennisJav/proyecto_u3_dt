@@ -28,8 +28,8 @@ public class Hotel {
 	private String direccion;
 	
 	//relacion
-	
-	@OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER)
+																					   // el lazy trae los datos bajo demanda
+	@OneToMany(mappedBy = "hotel",cascade = CascadeType.ALL ,fetch = FetchType.LAZY)  //el fetch es muy pesado, el mas eficiente es el eager 
 	private List<Habitacion> habitaciones;
 	
 	
