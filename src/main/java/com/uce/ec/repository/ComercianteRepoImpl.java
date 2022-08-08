@@ -59,7 +59,7 @@ public class ComercianteRepoImpl implements IComercianteRepo{
 	@Override
 	public List<Comerciante> buscarComercianteOuterJoinwhere(String modelo) {
 		TypedQuery<Comerciante> myQuery = this.entityManager.createQuery(
-				"SELECT C FROM Comerciante C, Auto a WHERE c = a.comerciante AND a.modelo =:valorUno", Comerciante.class);
+				"SELECT c FROM Comerciante c, Auto a WHERE c = a.comerciante AND a.modelo =:valorUno", Comerciante.class);
 		myQuery.setParameter("valorUno", modelo);
 		return myQuery.getResultList();
 	}
