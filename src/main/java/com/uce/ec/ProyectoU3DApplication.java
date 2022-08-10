@@ -11,7 +11,9 @@ import com.uce.ec.modelo.Habitacion;
 import com.uce.ec.modelo.Hotel;
 import com.uce.ec.service.IComercianteService;
 import com.uce.ec.service.IHotelService;
+import com.uce.ec.service.ITransferenciaService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -25,6 +27,9 @@ public class ProyectoU3DApplication implements CommandLineRunner {
 	
 	@Autowired
 	private IComercianteService iComercianteService;
+	
+	@Autowired
+	private ITransferenciaService transferenciaService;
 	
 	private static final Logger LOG = LogManager.getLogger(ProyectoU3DApplication.class);
 	
@@ -80,7 +85,7 @@ public class ProyectoU3DApplication implements CommandLineRunner {
 //				LOG.info("Hotel 2  habitaciones: "+hab);
 //			}
 //		}
-//		
+////		
 //		LOG.info("Relacionamiento Fetch");
 //		List<Hotel> listaHotel3=this.hotelService.buscarHotelOuterJoinFetch("Normal");
 //		for(Hotel h: listaHotel3) {
@@ -89,58 +94,14 @@ public class ProyectoU3DApplication implements CommandLineRunner {
 //				LOG.info("Hotel 2  habitaciones: "+hab);
 //			}
 //		}
-//		
-//		
-		LOG.info("INNER JOIN");
-		List<Comerciante> listaComerciantes = this.iComercianteService.buscarComercianteInnerJoin("Toyota");
-		for(Comerciante h: listaComerciantes) {
-			LOG.info("Comerciante : "+h.getNombre()+" "+h.getCedula());
-		}
-		
-		LOG.info("lEFT JOIN");
-		List<Comerciante> listaComerciantes1 = this.iComercianteService.buscarComercianteOuterJoinLeft("Toyota");
-		for(Comerciante h: listaComerciantes1) {
-			LOG.info("Comerciante : "+h.getNombre()+" "+h.getCedula());
-		}
-		
-		LOG.info("RIGHT JOIN");
-		List<Comerciante> listaComerciantes2 = this.iComercianteService.buscarComercianteOuterJoinRight("Toyota");
-		for(Comerciante h: listaComerciantes2) {
-			LOG.info("Comerciante : "+h.getNombre()+" "+h.getCedula());
-		}
-	
-		
-		LOG.info("lEFT JOIN sin arg");
-		List<Comerciante> listaComerciantes3 = this.iComercianteService.buscarComercianteOuterJoinLeft();
-		for(Comerciante h: listaComerciantes3) {
-			LOG.info("Comerciante : "+h.getNombre()+" "+h.getCedula());
-		}
-		
-		LOG.info("Inner JOIN sin arg");
-		List<Comerciante> listaComerciantes4 = this.iComercianteService.buscarComercianteInnerJoin();
-		for(Comerciante h: listaComerciantes4) {
-			LOG.info("Comerciante : "+h.getNombre()+" "+h.getCedula());
-		}
 
-		
-		LOG.info("Relacionamiento Where");
-		List<Comerciante> listaComerciantes5 = this.iComercianteService.buscarComercianteOuterJoinwhere("Toyota");
-		for(Comerciante h: listaComerciantes5) {
-			LOG.info("Comerciante : "+h.getNombre()+" "+h.getCedula());
-		}
+
+		LOG.info("TRANSFERENCIA");
+		//this.transferenciaService.realizarTransferencia("123", "1234",new BigDecimal(8));
 		
 		
-		LOG.info("Relacionamiento Fetch");
-		List<Comerciante> listaComerciantes6=this.iComercianteService.buscarComercianteOuterJoinFetch("Toyota");
-		for(Comerciante h: listaComerciantes6) {
-			LOG.info("Comerciante : "+h.getNombre() );
-			for(Auto hab:h.getAutos()) {
-				LOG.info("Comerciante  Autos: "+hab);
-			}
-		}
-		
-		
-		
+		LOG.info("TRANSFERENCIA FACHADA");
+		this.transferenciaService.realizarTransferenciaFachada("123", "1234",new BigDecimal(8));
 	}
 
 }
