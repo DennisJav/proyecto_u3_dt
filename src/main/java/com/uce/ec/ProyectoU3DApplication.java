@@ -97,11 +97,11 @@ public class ProyectoU3DApplication implements CommandLineRunner {
 
 
 		LOG.info("TRANSFERENCIA");
-		//this.transferenciaService.realizarTransferencia("123", "1234",new BigDecimal(8));
-		
-		
-		LOG.info("TRANSFERENCIA FACHADA");
-		this.transferenciaService.realizarTransferenciaFachada("123", "1234",new BigDecimal(8));
+		this.transferenciaService.realizarTransferencia("123", "1234",new BigDecimal(1));
+//		
+//		
+//		LOG.info("TRANSFERENCIA FACHADA");
+//		this.transferenciaService.realizarTransferenciaFachada("123", "1234",new BigDecimal(8));
 	}
 
 }

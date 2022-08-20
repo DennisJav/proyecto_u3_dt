@@ -26,10 +26,12 @@ public class CuentaBancariaRepoImpl implements ICuentaBancariaRepo {
 
 	@Override
 	@Transactional(value = TxType.MANDATORY)
+	//@Transactional(value = TxType.REQUIRES_NEW)
 	public void actualizar(CuentaBancaria cuentaBancaria) {
 		// TODO Auto-generated method stub
 		LOG.info("Transaccion activa repository INSERTAR: "+TransactionSynchronizationManager.isActualTransactionActive());
 		this.entityManager.merge(cuentaBancaria);
+	//	throw new RuntimeException();
 	}
 
 	@Override
