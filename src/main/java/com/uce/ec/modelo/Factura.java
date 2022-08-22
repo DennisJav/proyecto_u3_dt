@@ -1,5 +1,6 @@
 package com.uce.ec.modelo;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -28,10 +31,14 @@ public class Factura {
 
 	@Column(name = "fact_numero")
 	private String numero;
+	
+	@Column(name = "fact_Total")
+	private BigDecimal total;
+	
 
-//	@ManyToOne
-//	@JoinColumn(name = "fact_clie_id")
-//	private Cliente cliente;
+	@ManyToOne
+	@JoinColumn(name = "fact_clie_id")
+	private Cliente cliente;
 
 	@OneToMany(mappedBy = "factura", fetch = FetchType.EAGER)
 	private List<DetalleFactura> detalles;
@@ -42,8 +49,17 @@ public class Factura {
 	}
 
 	// GET & SET
+	
 	public Integer getId() {
 		return id;
+	}
+
+	public BigDecimal getTotal() {
+		return total;
+	}
+
+	public void setTotal(BigDecimal total) {
+		this.total = total;
 	}
 
 	public void setId(Integer id) {
@@ -66,13 +82,13 @@ public class Factura {
 		this.numero = numero;
 	}
 
-//	public Cliente getCliente() {
-//		return cliente;
-//	}
-//
-//	public void setCliente(Cliente cliente) {
-//		this.cliente = cliente;
-//	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 
 	public List<DetalleFactura> getDetalles() {
 		return detalles;

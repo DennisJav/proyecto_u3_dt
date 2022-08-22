@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,11 +24,13 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 	private EntityManager entityManager;
 
 	@Override
+	@Transactional(value = TxType.REQUIRES_NEW)
 	public void insertar(Factura factura) {
 		this.entityManager.persist(factura);
 	}
 
 	@Override
+	@Transactional(value = TxType.REQUIRES_NEW)
 	public void actualizar(Factura factura) {
 		this.entityManager.merge(factura);
 	}
@@ -50,8 +53,9 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 	}
 
 	@Override
+	@Transactional(value = TxType.NOT_SUPPORTED)
 	public Factura buscarPorNumero(String numero) {
-		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f WHERE f.numero > :numero",
+		TypedQuery<Factura> myQuery = this.entityManager.createQuery("SELECT f FROM Factura f WHERE f.numero = :numero",
 				Factura.class);
 		myQuery.setParameter("numero", numero);
 		return myQuery.getSingleResult();
