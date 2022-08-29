@@ -34,7 +34,7 @@ public class Producto {
 	
 	
 	//relacion
-	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "producto")
 	private List<DetalleFactura> detalleFactura;
 
 

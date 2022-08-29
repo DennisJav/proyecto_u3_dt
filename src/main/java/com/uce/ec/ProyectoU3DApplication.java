@@ -55,41 +55,28 @@ public class ProyectoU3DApplication implements CommandLineRunner {
 		Producto prod1 = new Producto();
 		prod1.setCodigoBarras("1");
 		prod1.setNombre("Doritos");
-		prod1.setPrecio(new BigDecimal(0.60));
+		prod1.setPrecio(new BigDecimal(0.50));
 		prod1.setStock(50);
 		
 		Producto prod2 = new Producto();
 		prod2.setCodigoBarras("2");
 		prod2.setNombre("Atun");
-		prod2.setPrecio(new BigDecimal(0.90));
+		prod2.setPrecio(new BigDecimal(1.20));
 		prod2.setStock(100);
 		
-		
-		Producto prod3 = new Producto();
-		prod3.setCodigoBarras("3");
-		prod3.setNombre("Papel");
-		prod3.setPrecio(new BigDecimal(6.00));
-		prod3.setStock(250);
-		
-		Producto prod4 = new Producto();
-		prod4.setCodigoBarras("4");
-		prod4.setNombre("Maicena");
-		prod4.setPrecio(new BigDecimal(3.00));
-		prod4.setStock(60);
+
 		
 //		this.productoService.crearProducto(prod1);
 //		this.productoService.crearProducto(prod2);
-//		this.productoService.crearProducto(prod3);
-//		this.productoService.crearProducto(prod4);
+
 		
 		List<String>codigosBarra = new ArrayList<>();
 		
 		codigosBarra.add("1");
-		codigosBarra.add("1");
 		codigosBarra.add("2");
-		codigosBarra.add("3");
+
 		
-		this.supermaxiGestorService.crearFactura("1721334686", "006",codigosBarra );
+		//this.supermaxiGestorService.crearFactura("1721334686", "022",codigosBarra );
 		
 	}
 

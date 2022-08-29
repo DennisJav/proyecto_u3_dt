@@ -60,6 +60,7 @@ public class SupermaxiGestorServiceImpl implements ISupermaxiGestorService{
 			
 		}	
 		factura.setDetalles(listaDeta);	
+		
 		factura.setTotal(valorTotal);
 		
 		this.facturaRepository.insertar(factura);
