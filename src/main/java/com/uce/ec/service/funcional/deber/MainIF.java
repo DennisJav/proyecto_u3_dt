@@ -70,7 +70,7 @@ public class MainIF {
 		LOG.info("unary HO: " + consumoHO.consumirUnaryOperator(alumno -> alumno, funcionLambda.aplicar(a)));
 		
 		
-		
+		//
 	}
 
 }
